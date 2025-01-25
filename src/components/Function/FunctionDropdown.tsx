@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface FunctionDropdownProps {
   id: number;
   nextFunction: number | null;

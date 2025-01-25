@@ -17,10 +17,9 @@ export const evaluateEquation = (equation: string, value: number): number | null
     // Convert exponentiation '^' to '**' for proper JavaScript evaluation
     const equationWithExponentiation = modifiedEquation.replace(/\^/g, '**');
     return eval(equationWithExponentiation);
-    // return Function(`return (${equationWithExponentiation})`)();
   } catch (error) {
     console.error('Error in evaluating the equation:', error);
-    throw new Error('Error in evaluating the equation: ' + error.message);
+    throw new Error('Error in evaluating the equation: ' + error?.message);
   }
 };
 

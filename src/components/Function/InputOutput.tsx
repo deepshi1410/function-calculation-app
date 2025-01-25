@@ -1,4 +1,3 @@
-import React from 'react';
 import JoiningPoint from '../../common/JoiningPoint';
 
 interface InputOutputProps {

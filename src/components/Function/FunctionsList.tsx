@@ -1,4 +1,3 @@
-import React from "react";
 import FunctionCard from "./FunctionCard";
 
 interface FunctionsListProps {

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 interface Point {
   x: number;
@@ -30,7 +30,6 @@ const ConnectionCanvas: React.FC<ConnectionCanvasProps> = ({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Get current scroll offsets
@@ -39,15 +38,14 @@ const ConnectionCanvas: React.FC<ConnectionCanvasProps> = ({
 
     // Draw each connection as a smooth Bézier curve
     connections.forEach(({ from, to }) => {
-      // Adjust points to include scroll offsets
       const adjustedFromX = from.x;
       const adjustedFromY = from.y;
       const adjustedToX = to.x;
       const adjustedToY = to.y;
 
       // Control points for Bézier curve
-      const controlPointX1 = adjustedFromX + 120; // Control point near the source
-      const controlPointX2 = adjustedToX - 140; // Control point near the target
+      const controlPointX1 = adjustedFromX + 120;
+      const controlPointX2 = adjustedToX - 140;
 
       ctx.beginPath();
       ctx.moveTo(adjustedFromX, adjustedFromY);
@@ -59,11 +57,10 @@ const ConnectionCanvas: React.FC<ConnectionCanvasProps> = ({
         adjustedToX,
         adjustedToY
       );
-      ctx.strokeStyle = "#0066FF4D"; // Curve color
+      ctx.strokeStyle = "#0066FF4D";
       ctx.lineWidth = 7;
       ctx.stroke();
 
-      // Log the adjusted points for debugging
       console.log(
         `Drawing line from [${adjustedFromX}, ${adjustedFromY}] to [${adjustedToX}, ${adjustedToY}]`
       );

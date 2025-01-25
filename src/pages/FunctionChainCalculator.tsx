@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useJoiningPoints } from "../hooks/useJoiningPoints";
 import { useFunctionConnections } from "../hooks/useFunctionConnections";
 import { useOutputCalculator } from "../hooks/useOutputCalculator";
