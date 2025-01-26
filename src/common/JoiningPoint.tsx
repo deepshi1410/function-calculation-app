@@ -48,12 +48,11 @@ const JoiningPoint: React.FC<JoiningPointProps> = ({
 
   return (
     <div
-      ref={pointRef}
       className={`flex items-center gap-2 ${titlePosition === "start" ? "flex-row" : "flex-row-reverse"}`}
     >
       {title && <div className="text-xs font-medium text-[#585757]">{title}</div>}
       <div className="flex items-center justify-center w-[15px] h-[15px] bg-white border-[#DBDBDB] border-[2px] rounded-full">
-        <div className="bg-[#66A3FF] w-[7px] h-[7px] rounded-full"></div>
+        <div ref={pointRef} className="bg-[#66A3FF] w-[7px] h-[7px] rounded-full"></div>
       </div>
     </div>
   );

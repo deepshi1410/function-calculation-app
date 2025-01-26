@@ -37,13 +37,15 @@ const InputOutput: React.FC<InputOutputProps> = ({
         }}
       >
         <JoiningPoint onPositionUpdate={onPositionUpdate} />
-        <div className={`w-[1px] h-full ${align === "end" ? 'ml-3' : 'mr-3'}`} style={{ background: borderColor }}></div>
+        <div className={`w-[1px] h-full`} style={{ background: borderColor }}></div>
         <input
           type="number"
           value={value}
           disabled={isDisabled}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="w-full h-full focus:outline-none font-bold text-lg bg-transparent"
+          className={`w-full h-full focus:outline-none font-bold text-lg bg-transparent px-3 ${
+            align === "end" ? "text-right" : "text-left"
+          }`}
         />
       </div>
     </div>
