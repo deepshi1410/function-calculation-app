@@ -1,4 +1,4 @@
-# Function Calculation App
+# Function Chain Calculator App
 
 This is a React application built with TypeScript and Vite. The app allows users to input a value and see how it is transformed through a series of mathematical functions. It provides a minimal setup to get React working in Vite with HMR (Hot Module Replacement) and some ESLint rules.
 
