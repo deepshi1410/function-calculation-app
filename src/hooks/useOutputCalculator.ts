@@ -1,9 +1,16 @@
 import { useMemo } from "react";
 import { evaluateEquation } from "../utils/evaluateEquation";
 
-export const useOutputCalculator = (inputValue: number, functions: any[]) => {
+export const useOutputCalculator = (
+  inputValue: number | null,
+  functions: any[]
+) => {
   const finalOutput = useMemo(() => {
-    let currentValue = inputValue;
+    // If inputValue is null, return null directly
+    if (inputValue === null) return null;
+
+    // currentValue is now always a number
+    let currentValue: number | null = inputValue;
     let currentFuncId = 1;
 
     while (currentFuncId) {
@@ -11,7 +18,7 @@ export const useOutputCalculator = (inputValue: number, functions: any[]) => {
       if (!func) break;
 
       try {
-        currentValue = evaluateEquation(func.equation, currentValue) ?? 0;
+        currentValue = evaluateEquation(func.equation, currentValue);
         currentFuncId = func.nextId || 0;
       } catch (error) {
         console.error(`Error evaluating function ${currentFuncId}:`, error);

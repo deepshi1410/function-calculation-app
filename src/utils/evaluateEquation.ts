@@ -1,28 +1,36 @@
 import { validator } from "./validator";
 
-export const evaluateEquation = (equation: string, value: number): number | null => {
+export const evaluateEquation = (equation: string, value: number | null): number | null => {
   try {
-    const validationError:string | null = validator(equation);
+    // Validate the equation using the external validator
+    const validationError: string | null = validator(equation);
     if (validationError) {
       throw new Error(validationError);
     }
 
-    // Replace 'x' with the actual value in the equation
-    // Handle cases like '2x' -> '2*x', 'x2' -> 'x*2' (Multiplication cases)
+    // Process the equation to make it JavaScript-compatible
     const modifiedEquation = equation
-      .replace(/(\d)(x)/g, '$1*$2')
-      .replace(/(x)(\d)/g, '$1*$2')
-      .replace(/x/g, value.toString());
+      // Add '*' for implicit multiplication (e.g., "2x" -> "2*x")
+      .replace(/(\d)(x)/g, "$1*$2")
+      .replace(/(x)(\d)/g, "$1*$2")
+      // Replace 'x' with the provided value
+      .replace(/x/g, `(${value})`)
+      // Convert exponentiation '^' to '**'
+      .replace(/\^/g, "**");
 
-    // Convert exponentiation '^' to '**' for proper JavaScript evaluation
-    const equationWithExponentiation = modifiedEquation.replace(/\^/g, '**');
-    return eval(equationWithExponentiation);
+    // Validate the final equation string to ensure it’s safe to evaluate
+    if (!/^[\d+\-*/().\s*x]*$/.test(modifiedEquation)) {
+      throw new Error("Invalid characters in the equation.");
+    }
+
+    // Safely evaluate the modified equation
+    return Function(`return ${modifiedEquation}`)();
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error('Error in evaluating the equation: ' + error.message);
+      console.error("Evaluation Error:", error.message);
+      return null; // Return null for failed evaluations
     } else {
-      throw new Error('Error in evaluating the equation.');
+      throw new Error("Unexpected error during equation evaluation.");
     }
   }
 };
-

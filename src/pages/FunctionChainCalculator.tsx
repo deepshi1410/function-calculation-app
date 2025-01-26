@@ -16,7 +16,7 @@ const initialFunctions = [
 
 function FunctionChainCalculator() {
   const [functions, setFunctions] = useState(initialFunctions);
-  const [inputValue, setInputValue] = useState<number>(2);
+  const [inputValue, setInputValue] = useState<number | null>(2);
   const { points, updatePoint } = useJoiningPoints();
   const connections = useFunctionConnections(points, functions);
   const finalOutput = useOutputCalculator(inputValue, functions);
