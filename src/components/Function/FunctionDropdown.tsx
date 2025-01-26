@@ -3,7 +3,7 @@ interface FunctionDropdownProps {
   nextFunction: number | null;
   functions: { id: number; nextId: number | null }[];
   disabled?: boolean;
-  onEquationChange: (id: number, newNextFunction: number | null) => void;
+  onNextFunctionChange: (id: number, newNextFunction: number | null) => void;
 }
 
 const FunctionDropdown: React.FC<FunctionDropdownProps> = ({
@@ -11,7 +11,7 @@ const FunctionDropdown: React.FC<FunctionDropdownProps> = ({
   nextFunction,
   functions,
   disabled = false,
-  onEquationChange,
+  onNextFunctionChange,
 }) => {
   return (
     <div className="mb-2">
@@ -19,7 +19,7 @@ const FunctionDropdown: React.FC<FunctionDropdownProps> = ({
         value={nextFunction || ''}
         onChange={(e) => {
           const newNextFunction = e.target.value ? parseInt(e.target.value) : null;
-          onEquationChange(id, newNextFunction);
+          onNextFunctionChange(id, newNextFunction);
         }}
         disabled={disabled}
         className={`w-full h-[33px] px-3 border border-gray-300 rounded-lg text-xs focus:outline-none focus:ring focus:ring-indigo-100 ${

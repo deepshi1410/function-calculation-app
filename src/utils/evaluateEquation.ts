@@ -18,8 +18,11 @@ export const evaluateEquation = (equation: string, value: number): number | null
     const equationWithExponentiation = modifiedEquation.replace(/\^/g, '**');
     return eval(equationWithExponentiation);
   } catch (error) {
-    console.error('Error in evaluating the equation:', error);
-    throw new Error('Error in evaluating the equation: ' + error?.message);
+    if (error instanceof Error) {
+      throw new Error('Error in evaluating the equation: ' + error.message);
+    } else {
+      throw new Error('Error in evaluating the equation.');
+    }
   }
 };
 

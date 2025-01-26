@@ -9,7 +9,8 @@ interface FunctionCardProps {
   equation: string;
   nextFunction: number | null;
   functions: { id: number; equation: string; nextId: number | null }[];
-  onEquationChange: (id: number, newValue: string | number | null) => void;
+  onEquationChange: (id: number, newValue: string) => void;
+  onNextFunctionChange: (id: number, newNextFunction: number | null) => void;
   onInputPositionUpdate?: (position: { x: number; y: number }) => void;
   onOutputPositionUpdate?: (position: { x: number; y: number }) => void;
 }
@@ -19,6 +20,7 @@ const FunctionCard: React.FC<FunctionCardProps> = ({
   equation,
   onEquationChange,
   nextFunction,
+  onNextFunctionChange,
   functions,
   onInputPositionUpdate,
   onOutputPositionUpdate,
@@ -55,7 +57,7 @@ const FunctionCard: React.FC<FunctionCardProps> = ({
           </label>
           <input
             type="text"
-            value={equation}
+            value={equation ?? ""}
             onChange={handleEquationChange}
             className="w-full h-[33px] px-3 border border-gray-300 rounded-lg text-xs focus:outline-none focus:ring focus:ring-indigo-100"
             placeholder="Enter equation..."
@@ -70,9 +72,9 @@ const FunctionCard: React.FC<FunctionCardProps> = ({
             id={id}
             nextFunction={nextFunction}
             functions={functions}
-            onEquationChange={(id, newNextFunction) =>
-              onEquationChange(id, newNextFunction)
-            }
+            onNextFunctionChange={(id, newNextFunction) => {
+              onNextFunctionChange(id, newNextFunction);
+            }}
             disabled
           />
         </div>

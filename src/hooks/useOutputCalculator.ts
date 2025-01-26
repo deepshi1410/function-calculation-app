@@ -11,7 +11,7 @@ export const useOutputCalculator = (inputValue: number, functions: any[]) => {
       if (!func) break;
 
       try {
-        currentValue = evaluateEquation(func.equation, currentValue);
+        currentValue = evaluateEquation(func.equation, currentValue) ?? 0;
         currentFuncId = func.nextId || 0;
       } catch (error) {
         console.error(`Error evaluating function ${currentFuncId}:`, error);

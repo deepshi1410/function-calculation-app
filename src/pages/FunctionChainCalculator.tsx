@@ -55,6 +55,14 @@ function FunctionChainCalculator() {
     );
   };
 
+  const handleNextFunctionChange = (id: number, newNextFunction: number | null) => {
+    setFunctions((prevFunctions) =>
+      prevFunctions.map((func) =>
+        func.id === id ? { ...func, nextId: newNextFunction } : func
+      )
+    );
+  };
+
   return (
     <div ref={containerRef} className="min-h-screen dotted-background w-full relative">
       <ConnectionCanvas connections={connections} width={containerSize.width} height={containerSize.height} />
@@ -72,6 +80,7 @@ function FunctionChainCalculator() {
           functions={functions}
           onEquationChange={handleEquationChange}
           updatePoint={updatePoint}
+          onNextFunctionChange={handleNextFunctionChange}
         />
         <InputOutput
           value={finalOutput}
