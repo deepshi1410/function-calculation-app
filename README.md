@@ -10,6 +10,7 @@ This is a React application built with TypeScript and Vite. The app allows users
 - Hot Module Replacement (HMR) for a better development experience
 - Canvas for drawing connection lines between functions
 - Validator for validating expressions entered in function cards
+- Completely responsive. Links will change as window resizes. Dynamic links, can be configured.
 
 ## Getting Started
 
@@ -67,6 +68,7 @@ npm run lint
   - **`useJoiningPoints`**: Manages the points where functions connect.
   - **`useFunctionConnections`**: Calculates the connections between functions.
   - **`useOutputCalculator`**: Computes the final output based on the input value and the function chain.
+  - Dynamic links, can be configured easily just by changing nextId in initialFunctions array in FunctionChainCalculator.tsx
 
 - **`src/components/Function/InputOutput.tsx`**: A reusable component for entering input values and displaying the final output. It distinguishes between input and output based on props. Also updates the position of the input and output fields for connection purposes.
   
