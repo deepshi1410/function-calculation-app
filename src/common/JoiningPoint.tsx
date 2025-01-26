@@ -27,14 +27,12 @@ const JoiningPoint: React.FC<JoiningPointProps> = ({
 
     const position = getPosition();
     if (position) {
-      console.log("JoiningPoint position updated:", position);
       onPositionUpdate(position);
     }
 
     const observer = new ResizeObserver(() => {
       const newPosition = getPosition();
       if (newPosition) {
-        console.log('pos joinpointnewww', newPosition);
         onPositionUpdate(newPosition);
       }
     });
